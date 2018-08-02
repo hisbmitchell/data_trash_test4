@@ -8,10 +8,12 @@ var current;
 var manImg;
 var bool = true;
 var bool2 = true;
+var errorMessage = 0;
 
 var bgImage;
 var bgVideo;
 var pressEnter = 0;
+var errorImage;
 
 
 function preload() {
@@ -22,6 +24,7 @@ function preload() {
   
   bgImage = loadImage('assets/deathscreen3.jpg');
   bgVideo = createVideo('assets/bgVideo2.mov');
+  errorImage = loadImage('assets/error4.jpg');
   
 
 //   grow = createVideo('assets/zoom_1.mp4');
@@ -43,6 +46,32 @@ function setup() {
  
 }
 
+function mousePressed() {
+  if (bool === true) {
+    manImg = manImg1;
+    
+    errorMessage = 1;
+    
+    image(errorImage, windowWidth/2, windowHeight/2);
+    
+    
+
+    bool = false;
+    
+    println("cool!");
+    
+  } else {
+    println("notcool...");
+    
+    manImg = manImg2;
+    
+    errorMessage = 0;
+
+    bool = true;
+  }
+
+}
+
 function keyPressed(){
   if (keyCode === ENTER) {
     
@@ -60,8 +89,9 @@ function keyPressed(){
 
     bool2 = true;
   }
-  }
-
+}
+    
+  
     
     for (i = 0; i <= investMen.length; i++) {
     
@@ -80,9 +110,13 @@ function draw() {
     bgVideo.play();
     image(bgVideo, width / 2, height / 2);
     
-  } else if (pressEnter == 0) {
-    image(bgImage, windowWidth/2, windowHeight/2, windowWidth, windowHeight  );
   }
+  if (errorMessage == 1){
+    image(errorImage, windowWidth/2, windowHeight/2  );
+  } else {
+    
+  }
+  
     
      function windowResized(){
         resizeCanvas(windowWidth, windowHeight);
@@ -118,23 +152,7 @@ function draw() {
     image(bgImage, windowWidth/2, windowHeight/2,windowWidth, windowHeight  );
   }
   
-  function mousePressed() {
-  if (bool === true) {
-    manImg = manImg1;
-
-    bool = false;
-    
-    println("cool!");
-    
-  } else {
-    println("notcool...");
-    
-    manImg = manImg2;
-
-    bool = true;
-  }
-
-}
+  
 
 for (i = 0; i < investMen.length; i++) {
     
