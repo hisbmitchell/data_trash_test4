@@ -80,6 +80,8 @@ function draw() {
     bgVideo.play();
     image(bgVideo, width / 2, height / 2);
     
+  } else if (pressEnter == 0) {
+    image(bgImage, windowWidth/2, windowHeight/2, windowWidth, windowHeight  );
   }
     
      function windowResized(){
