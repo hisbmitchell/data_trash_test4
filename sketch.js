@@ -20,6 +20,23 @@ var errorImage4;
 var fontLucida;
 
 
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background('#0d02eb');
+  
+  
+  
+ 
+ 
+  
+  frameRate(15);
+   manImg = manImg2
+  
+   
+ 
+}
+
+
 
 function preload() {
 
@@ -29,10 +46,10 @@ function preload() {
   
   bgImage = loadImage('assets/deathscreen3.jpg');
   bgVideo = createVideo('assets/bgVideo2.mov');
-  errorImage = loadImage('assets/popup1.jpg');
-  errorImage2 = loadImage('assets/MSG2.png');
-  errorImage3 = loadImage('assets/popup3.jpg');
-  errorImage4 = loadImage('assets/popup4.jpg');
+  errorImage = loadImage('assets/POP1.jpg');
+  errorImage2 = loadImage('assets/POP2.jpg');
+  errorImage3 = loadImage('assets/POP3.jpg');
+  errorImage4 = loadImage('assets/POP4.jpg');
   
   fontLucida = loadFont('assets/Lucida_Console_Regular.ttf');
   
@@ -47,23 +64,12 @@ function preload() {
   
 }
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background('#0d02eb');
- 
-  
-  frameRate(15);
-   manImg = manImg2
-   //bgVideo.size(bgVideo.width, bgVideo.height);
-   
- 
-}
+
 
 function mousePressed() {
   
   
-    var fs = true;
-    fullscreen(fs);
+   
   // if (bool === true) {
   //   manImg = manImg1;
     
@@ -99,11 +105,15 @@ function mousePressed() {
 //}
 
 function keyPressed(){
-  if (keyCode === ESCAPE){
-  fullscreen(!true);}
+ 
+  
   
   
   if (keyCode === ENTER) {
+        var fs = true;
+    
+     errorMessage += 1;
+    println (errorMessage);
     
      if (bool2 === true) {
    // pressEnter = 1;
@@ -133,21 +143,85 @@ function keyPressed(){
 function draw() {
   
    imageMode(CENTER);
+  
   background('#0d02eb');
+  text('width' + windowWidth + 'height' +  windowHeight, 300, 90);
    fill(255);
+    noStroke();
   textSize(18);
   textStyle();
   textFont(fontLucida);
   var dataHeight = 10;
   
-  for (i = 0; i < 40; i ++) {
+  
+  var millisecond = millis();
+  var newTime = 1000;
+  text(millisecond, windowWidth - 250, 50);
+  var timePassed = millisecond;
+  //text (timePassed, windowWidth - 400, windowHeight - 200);
+  
+  for (i = 0; i < 50; i ++) {
+    
+    if (timePassed >= newTime ){
+    //text ('MATCH!', windowWidth - 600, windowHeight - 200)
     text('DATATRASH',90,dataHeight);
     dataHeight += 20;
-    i +=1;
-  }
+    
+      newTime += 50;
+      i +=1;
+      
+      
+      
+      
+      }
+      
+      
+    
+    
+    }
+    if (timePassed >= 2500) {
+        text('Unknown error__________________________//', 90, dataHeight + 30);
+        
+        newTime += 50
+        var clickCol = 255;
+        var fillBool = true;
+        
+         for (i = 0; i < 30; i ++) {
+    
+          if (timePassed >= newTime ){
+            
+             if (fillBool === true) {
+               //println("THERE");
+               fill(255);
+               text('Click or press enter to continue', 90, dataHeight + 50 );
+               //clickCol = '#0d02eb';
+               fillBool = false;
+              } else {
+                //println("GONE");
+                fill('#0d02eb');
+                rect(90, dataHeight + 32, 400, 30);
+                fillBool = true;
+                }
+            
+          //fill(clickCol);
+          //text('Click or press enter', 90, dataHeight + 50 );
+          
+          
+          
+          clickCol = '#0d02eb';
+    
+          newTime += 200;
+          i +=1;
+      
+      
+          }
+      
+      }
   
-  text('Unknown error__________________________//', 90, dataHeight + 30);
-  text('Click or press enter', 90, dataHeight + 60);
+        
+   }
+  
+  
   //createCanvas(windowWidth, windowHeight);
   //imageMode(CENTER);
   //background('#0d02eb');
@@ -158,24 +232,32 @@ function draw() {
     image(bgVideo, width / 2, height / 2);
     
   }
-  if (errorMessage == 1){
+  if (errorMessage >= 1){
     image(errorImage, windowWidth/2, windowHeight/2);
-  } else if (errorMessage == 2) {
-    image(errorImage2, windowWidth/2, windowHeight/2);
-  }else if (errorMessage == 3) {
-    image(errorImage3, windowWidth/2, windowHeight/2);
-    }else if (errorMessage == 4) {
-    image(errorImage4, windowWidth/2, windowHeight/2);
+  } if (errorMessage >= 2) {
+    image(errorImage2, windowWidth*0.3, windowHeight*0.3);
+  }if (errorMessage >= 3) {
+    image(errorImage3, windowWidth*0.2, windowHeight*0.6);
+    }if (errorMessage >= 4) {
+    image(errorImage4, windowWidth*0.7, windowHeight*0.7);
       
     }if (errorMessage >= 5) {
     //background(0);
+    
     bgVideo.play();
     image(bgVideo, width * 0.4, height * 0.4);
     
     }if (errorMessage >= 6) {
     //background(0);
-    bgVideo.play();
-    image(bgVideo, width * 0.7, height * 0.7);}
+    //bgVideo.play();
+    //bgVideo.size(bgVideo.width*0.2, bgVideo.height*0.2);
+    image(bgVideo, width * 0.7, height * 0.7);
+    
+}if (errorMessage >= 7) {
+    //background(0);
+    //bgVideo.play();
+    //bgVideo.size(bgVideo.width*0.4, bgVideo.height*0.4);
+    image(bgVideo, width * 0.3, height * 0.5);}
   
     
     
