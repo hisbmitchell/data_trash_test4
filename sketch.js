@@ -18,6 +18,11 @@ var errorImage2;
 var errorImage3;
 var errorImage4;
 var fontLucida;
+var spacing;
+var trashNumber;
+
+var errorRatio;
+
 
 
 function setup() {
@@ -145,13 +150,25 @@ function draw() {
    imageMode(CENTER);
   
   background('#0d02eb');
-  text('width' + windowWidth + 'height' +  windowHeight, 300, 90);
+  //text('width' + windowWidth + 'height' +  windowHeight, 300, 90);
    fill(255);
     noStroke();
-  textSize(18);
+  if (windowWidth < 1000){
+    textSize(32);
+    spacing = 30;
+    trashNumber = 65;
+    errorRatio = 3;
+    
+  } else {
+    textSize(18);
+    spacing = 20;
+    trashNumber = 50;
+    errorRatio = 1;
+  }
+  
   textStyle();
   textFont(fontLucida);
-  var dataHeight = 10;
+  var dataHeight = 0;
   
   
   var millisecond = millis();
@@ -160,27 +177,19 @@ function draw() {
   var timePassed = millisecond;
   //text (timePassed, windowWidth - 400, windowHeight - 200);
   
-  for (i = 0; i < 50; i ++) {
+  for (i = 0; i < trashNumber; i ++) {
     
     if (timePassed >= newTime ){
     //text ('MATCH!', windowWidth - 600, windowHeight - 200)
-    text('DATATRASH',90,dataHeight);
-    dataHeight += 20;
+    text('DATATRASH',windowWidth * 0.1 ,dataHeight);
+    dataHeight += spacing;
     
       newTime += 50;
       i +=1;
-      
-      
-      
-      
       }
-      
-      
-    
-    
     }
     if (timePassed >= 2500) {
-        text('Unknown error__________________________//', 90, dataHeight + 30);
+        text('Unknown error__________________________//', windowWidth * 0.1, dataHeight + spacing);
         
         newTime += 50
         var clickCol = 255;
@@ -189,17 +198,19 @@ function draw() {
          for (i = 0; i < 30; i ++) {
     
           if (timePassed >= newTime ){
-            
+            text('Click or press enter to continue', windowWidth * 0.1, dataHeight + spacing + 30 );
              if (fillBool === true) {
                //println("THERE");
-               fill(255);
-               text('Click or press enter to continue', 90, dataHeight + 50 );
+               
+               fill('#0d02eb');
+               
                //clickCol = '#0d02eb';
                fillBool = false;
               } else {
                 //println("GONE");
-                fill('#0d02eb');
-                rect(90, dataHeight + 32, 400, 30);
+                fill(255);
+                
+                //rect(90, dataHeight + spacing, 400, 30);
                 fillBool = true;
                 }
             
@@ -233,13 +244,13 @@ function draw() {
     
   }
   if (errorMessage >= 1){
-    image(errorImage, windowWidth/2, windowHeight/2);
+    image(errorImage, windowWidth/2, windowHeight/2, errorImage.width * errorRatio, errorImage.height * errorRatio);
   } if (errorMessage >= 2) {
-    image(errorImage2, windowWidth*0.3, windowHeight*0.3);
+    image(errorImage2, windowWidth*0.47, windowHeight*0.45, errorImage2.width * errorRatio, errorImage2.height * errorRatio);
   }if (errorMessage >= 3) {
-    image(errorImage3, windowWidth*0.2, windowHeight*0.6);
+    image(errorImage3, windowWidth*0.43, windowHeight*0.43, errorImage3.width * errorRatio, errorImage3.height * errorRatio);
     }if (errorMessage >= 4) {
-    image(errorImage4, windowWidth*0.7, windowHeight*0.7);
+    image(errorImage4, windowWidth*0.53, windowHeight*0.53, errorImage4.width * errorRatio, errorImage4.height * errorRatio);
       
     }if (errorMessage >= 5) {
     //background(0);
